@@ -1,0 +1,19 @@
+# Build artifacts
+build/
+cmake-build-debug/
+*.o
+*.cmake
+CMakeCache.txt
+Makefile
+QNX_Video
+
+# Output files
+output/
+output_video.mp4
+
+# IDE files
+.idea/
+*.iml
+
+# macOS system files
+.DS_Store
