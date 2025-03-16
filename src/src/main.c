@@ -1,4 +1,29 @@
-// Created by Pouya Samandi on 2025-03-15.
+// High-Level Explanation:
+// This module is the main entry point for the QNX-based video pipeline, integrating camera, display, encoder, and ISP modules to capture, process, and save video.
+// It initializes all components, runs a loop to capture and display frames, handles user keypresses ('s' to toggle saving, 'q' to quit), and manages a multi-threaded encoding process.
+// The pipeline captures frames using the QNX Camera Framework, displays them using the QNX Screen API, and saves raw frames to a file when saving is active.
+// Important functions include the main loop, ISP callback for frame processing, and the encoder thread for parallel encoding.
+// Key variables include global pointers to modules, mutexes for thread safety, the encoding state, and the output file path.
+
+// Important Functions:
+// - isp_callback: Retrieves the current buffer from the ISP and displays it with the saving status.
+// - display_callback: Placeholder for post-display processing (currently empty).
+// - encoder_thread: Runs in a separate thread to capture and encode frames when saving is active.
+// - main: Initializes modules, runs the main loop, processes keypresses, and handles cleanup.
+
+// Important Variables:
+// - global_display: Pointer to the display module for rendering frames.
+// - global_encoder: Pointer to the encoder module for saving frames.
+// - camera: Pointer to the camera wrapper for capturing frames.
+// - is_encoding: Flag to control the encoder thread.
+// - encoder_thread_id: POSIX thread ID for the encoder thread.
+// - camera_mutex/encode_mutex: Mutexes for thread synchronization.
+// - output_path: Path for the output video file.
+
+// Inputs and Outputs:
+// - Inputs: None (configured via constants like width/height and output path).
+// - Outputs: Video frames (displayed/saved), return code (int).
+
 #include "isp.h"
 #include "display.h"
 #include "encoder.h"
